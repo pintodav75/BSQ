@@ -13,38 +13,7 @@
 #include "ft.h"
 #include <stdio.h>
 
-int	verif_size_map(char *str)
-{
-	int i;
-	int count;
-	int res;
-
-	i = 6;
-	count = 0;
-	res = 0;
-	while (str[i] != '\0')
-	{
-		while (str[i] != '\n')
-		{
-			i++;
-			count++;
-		}
-		res = count;
-		count = 0;
-		while (str[i] != '\n')
-		{
-			i++;
-			count++;
-		}
-		if (res != count)
-			ft_putstr("FAUX");
-		i++;
-	}
-	return (1);
-
-}
-
-int	to_buff(char *str)
+int	get_map(char *str, char ***res)
 {
 		int fd;
 		int ret;
@@ -58,10 +27,7 @@ int	to_buff(char *str)
 		}
 		ret = read(fd, buf,10000);
 		buf[ret] = '\0';
-		if (!verif_size_map(buf))
-			ft_putstr("map error\n");
-		ft_putchar('\n');
-		ft_putstr(buf);
+		*res = ft_split(buf, "\n");
 		if (close(fd) == -1)
 		{
 			ft_putstr("Close error\n");
@@ -71,13 +37,29 @@ int	to_buff(char *str)
 
 }
 
+void	print_map(char **map)
+{
+	int	i = 0;
 
+	while (map[i] != NULL)
+	{
+		ft_putstr(map[i]);
+		ft_putchar('\n');
+		i++;
+	}
+}
 
 int	main(int ac, char **av)
 {
+	char 	**res;
+	char	*line;
+
 	if (ac == 2)
 	{
-		if (to_buff(av[1]) == 1)
+		if (get_map(av[1], &res) == 1)
 			ft_putstr("MAP valide MON SAUCE\n");
 	}
+	line = res[0];
+	res = res + 1;
+	print_map(res);
 }
