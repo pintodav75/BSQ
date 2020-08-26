@@ -21,7 +21,6 @@ int	ft_atoi(char *str)
 	i = 0;
 	res = 0;
 	len = ft_strlen(str) - 3;
-	
 	while (str[i] >= '0' && str[i] <= '9' && i < len)
 	{
 		res = res * 10 + str[i] - 48;

@@ -20,17 +20,17 @@ int	check_line(char *line)
 	i = ft_strlen(line) - 3;
 	while (line[i] != '\0')
 	{
-		j = i + 1;
+		j = i;
 		while (line[j] != '\0')
 		{
+			if (i == j)
+				j++;
 			if (line[i] == line[j])
 			{
-				ft_putstr("c cho");
 				return (0);
 			}
 			j++;
 		}
-		j = 0;
 		i++;
 	}
 	return (1);

@@ -56,7 +56,7 @@ int	is_in_the_line(char c, char *line)
 	int i;
 
 	i = ft_strlen(line) - 3;
-	while (line[i] != '\0')
+	while (line[i + 1] != '\0')
 	{
 		if (c == line[i])
 			return (1);
@@ -83,7 +83,7 @@ int	check_alpha(char **map, char *line)
 				return (0);
 		}
 		i++;
-:x
+	}
 	return (1);
 }
 
